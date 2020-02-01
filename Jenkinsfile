@@ -19,8 +19,15 @@ pipeline
              sh 'mvn test'
          }
      }
-     stage ('deploy')
-     {
+     stage ('find my binary')
+        {
+            steps
+            {
+                sh 'find / -name *.war'
+            }
+        }
+       stage ('deploy')
+        {
          steps
          {
              sh 'cp -R /root/.jenkins/workspace/declarative_job/target/* /opt/apache-tomcat-8.5.4/webapps'
